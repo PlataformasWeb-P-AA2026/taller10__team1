@@ -1,3 +1,9 @@
+# Integrantes
+
+- MENDOZA VEGA VICTOR ALFONSO
+- CUEVA VALDIVIESO JUAN SEBASTIAN
+
+
 # taller10
 
 Uso de admin y formularios básicos
