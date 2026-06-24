@@ -1,0 +1,44 @@
+<h2>Listado de Parroquias</h2>
+
+<ul>
+    {% for parroquia in parroquias %}
+    <li>
+        <strong>{{ parroquia.nombre }}</strong> ({{ parroquia.tipo }} - Ubicación: {{parroquia.ubicacion}})
+        <br>
+        <strong>Total Parques:</strong> {{ parroquia.total_parques|default:0 }}
+        - [<a href="{% url 'editar_parroquia' parroquia.pk %}">Editar Parroquia</a>]
+
+        <ul>
+            {% for barrio in parroquia.barrios.all %}
+            <li>
+                {{ barrio.nombre }} - Parques: {{ barrio.numero_parques }} |
+                <strong>Presidentes:</strong>
+
+                {% for presidente in barrio.presidentes.all %}
+                {{ presidente.profesion }} ({{ presidente.nickname }}){% if not forloop.last %}, {% endif %}
+                {% empty %}
+                Sin asignar
+                {% endfor %}
+
+                - [<a href="{% url 'editar_barrio' barrio.pk %}">Editar Barrio</a>]
+            </li>
+            {% empty %}
+            <li>No hay barrios registrados en esta parroquia.</li>
+            {% endfor %}
+        </ul>
+        <br>
+    </li>
+    {% empty %}
+    <li>No hay parroquias registradas.</li>
+    {% endfor %}
+</ul>
+
+<hr>
+<br>
+[<a href="{% url 'listar_parroquias' %}">Listar Parroquias</a>] |
+<br>
+[<a href="{% url 'listar_barrios' %}">Listar Barrios</a>] |
+<br>
+[<a href="{% url 'crear_parroquia' %}">Crear Parroquia</a>] |
+<br>
+[<a href="{% url 'crear_barrio' %}">Crear Barrio</a>]

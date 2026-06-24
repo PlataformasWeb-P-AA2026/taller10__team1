@@ -21,10 +21,10 @@ class Parroquia(models.Model):
 
 
 class Barrio(models.Model):
-    PARQUES_CHOICES = [(i, str(i)) for i in range(1, 7)]
+    parques_rango = [(i, str(i)) for i in range(1, 7)]
     nombre = models.CharField(max_length=150, verbose_name="Nombre del Barrio/Ciudadela")
     numero_viviendas = models.PositiveIntegerField(verbose_name="Número de Viviendas")
-    numero_parques = models.IntegerField(choices=PARQUES_CHOICES, verbose_name="Número de Parques")
+    numero_parques = models.IntegerField(choices=parques_rango, verbose_name="Número de Parques")
     numero_edificios_residenciales = models.PositiveIntegerField(verbose_name="Número de Edificios Residenciales")
     parroquia = models.ForeignKey(Parroquia, on_delete=models.CASCADE, related_name='barrios', verbose_name="Parroquia")
 
@@ -37,7 +37,6 @@ class PresidenteBarrio(models.Model):
     nickname = models.CharField(max_length=50, unique=True, verbose_name="Nickname")
     edad = models.PositiveIntegerField(verbose_name="Edad")
     profesion = models.CharField(max_length=100, verbose_name="Profesión")
-    barrio = models.OneToOneField(Barrio, on_delete=models.CASCADE, related_name='presidente', verbose_name="Barrio")
-
+    barrio = models.ForeignKey(Barrio, on_delete=models.CASCADE, related_name='presidentes', verbose_name="Barrio")
     def __str__(self):
         return f"{self.nickname} ({self.profesion})"

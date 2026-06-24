@@ -1,0 +1,24 @@
+<h2>Listado de Barrios</h2>
+
+<ul>
+    {% for barrio in barrios %}
+    <li>
+        <strong>{{ barrio.nombre }}</strong> (Pertenece a Parroquia: {{ barrio.parroquia.nombre }})<br>
+        Viviendas: {{ barrio.numero_viviendas }} | Edificios: {{ barrio.numero_edificios_residenciales }} | Parques:
+        {{barrio.numero_parques }}
+        - [<a href="{% url 'editar_barrio' barrio.pk %}">Editar</a>]
+    </li>
+    {% empty %}
+    <li>No hay barrios registrados.</li>
+    {% endfor %}
+</ul>
+
+<hr>
+<br>
+[<a href="{% url 'listar_parroquias' %}">Listar Parroquias</a>] |
+<br>
+[<a href="{% url 'listar_barrios' %}">Listar Barrios</a>] |
+<br>
+[<a href="{% url 'crear_parroquia' %}">Crear Parroquia</a>] |
+<br>
+[<a href="{% url 'crear_barrio' %}">Crear Barrio</a>]

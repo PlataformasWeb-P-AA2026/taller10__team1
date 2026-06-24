@@ -1,0 +1,48 @@
+<h2>Panel Principal</h2>
+
+<h3>Número de parroquias: {{ numero_parroquias }}</h3>
+<ul>
+    {% for e in parroquia %}
+    <li>
+        {{ e }} -
+        [<a href="{% url 'editar_parroquia' e.id %}">editar</a>]
+    </li>
+    {% endfor %}
+</ul>
+<br />
+[<a href="{% url 'crear_parroquia' %}">agregar parroquia</a>]
+<br />
+<hr>
+
+<h3>Barrios</h3>
+<h4>Número de Barrios: {{ numero_barrios }}</h4>
+<ul>
+    {% for p in barrio %}
+    <li>
+        {{ p }} -
+        [<a href="{% url 'editar_barrio' p.id %}">editar</a>] -
+    </li>
+    {% endfor %}
+</ul>
+<br />
+[<a href="{% url 'crear_barrio' %}">agregar barrio</a>]
+<br />
+<hr>
+
+<h3>Número de Presidentes de barrio: {{ numero_presidentes_barrio }}</h3>
+<ul>
+    {% for e in presidenteBarrio %}
+    <li>
+        {{ e }}
+    </li>
+    {% endfor %}
+</ul>
+<br />
+
+<a href="{% url 'listar_parroquias' %}">ver parroquias</a>
+<br />
+<a href="{% url 'listar_barrios' %}">ver barrios</a>
+<br>
+[<a href="{% url 'crear_parroquia' %}">Crear Parroquia</a>] |
+<br>
+[<a href="{% url 'crear_barrio' %}">Crear Barrio</a>]
